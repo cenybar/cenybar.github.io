@@ -13,9 +13,8 @@ interface Props {
 
 const { titulo, autor, estado, origen, isbn = null, nota = null } = Astro.props;
 
-const coverUrl = isbn
-  ? `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`
-  : ((covers as Record<string, string | null>)[`${titulo}|${autor}`] ?? null);
+const coverUrl = (covers as Record<string, string | null>)[`${titulo}|${autor}`]
+  ?? (isbn ? `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg` : null);
 
 const estadoLabel: Record<string, string> = {
   leyendo: 'Leyendo',

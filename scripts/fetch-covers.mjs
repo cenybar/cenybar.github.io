@@ -34,11 +34,11 @@ async function search(params) {
 for (const b of books) {
   const key = `${b.titulo}|${b.autor}`
 
+  if (covers[key]) continue
   if (b.isbn) {
     covers[key] = `https://covers.openlibrary.org/b/isbn/${b.isbn}-M.jpg`
     continue
   }
-  if (covers[key]) continue
 
   const authorLast = b.autor.split("/").pop().trim().split(" ").pop()
   const titleClean = stripAccents(b.titulo)
