@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "covers": "node scripts/fetch-covers.mjs",
+    "build": "node scripts/fetch-covers.mjs && astro build",
     "preview": "astro preview"
   },
   "dependencies": {
