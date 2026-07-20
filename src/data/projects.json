@@ -2,7 +2,7 @@
   {
     "nombre": "Mi web personal",
     "descripcion": "Esta misma web: blog, seguimiento de lecturas y proyectos. Construida con Astro.",
-    "url": "https://github.com/tuusuario/web-personal",
+    "url": "https://cenybar.github.io/",
     "tags": ["Astro", "CSS"]
   }
 ]
