@@ -1,0 +1,45 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  wide?: boolean;
+}
+
+const { title, description = 'Web personal de Santiago', wide = false } = Astro.props;
+const path = Astro.url.pathname;
+
+const links = [
+  { href: '/blog/', label: 'Blog' },
+  { href: '/lecturas/', label: 'Lecturas' },
+  { href: '/proyectos/', label: 'Proyectos' },
+  { href: '/sobre-mi/', label: 'Sobre mí' },
+];
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/" class="brand">Santiago</a>
+        {links.map((l) => (
+          <a href={l.href} aria-current={path.startsWith(l.href) ? 'page' : undefined}>
+            {l.label}
+          </a>
+        ))}
+      </nav>
+    </header>
+    <main class={wide ? 'wide' : undefined}>
+      <slot />
+    </main>
+    <footer>© {new Date().getFullYear()} Santiago · Hecho con Astro</footer>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import projects from '../data/projects.json';
+---
+
+<BaseLayout title="Proyectos — Santiago" wide>
+  <h1>Proyectos</h1>
+  <div class="project-grid">
+    {projects.map((p) => (
+      <div class="project-card">
+        <h3>{p.url ? <a href={p.url}>{p.nombre}</a> : p.nombre}</h3>
+        <p style="margin: 0; font-size: 0.92rem; color: var(--text-muted);">{p.descripcion}</p>
+        <div class="tags">
+          {p.tags.map((t) => <span>{t}</span>)}
+        </div>
+      </div>
+    ))}
+  </div>
+</BaseLayout>

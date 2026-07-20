@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BookCard from '../components/BookCard.astro';
+import books from '../data/books.json';
+
+const orden = { leyendo: 0, 'quiero-leer': 2, leido: 1 } as Record<string, number>;
+const sorted = [...books].sort((a, b) => orden[a.estado] - orden[b.estado]);
+---
+
+<BaseLayout title="Lecturas — Santiago" wide>
+  <h1>Lecturas</h1>
+  <p style="color: var(--text-muted);">
+    Los libros que estoy leyendo, los que he terminado y los que están en la lista de espera.
+  </p>
+
+  <div class="filters">
+    <button class="active" data-filter="todos">Todos</button>
+    <button data-filter="leyendo">Leyendo</button>
+    <button data-filter="leido">Leídos</button>
+    <button data-filter="quiero-leer">Quiero leer</button>
+  </div>
+
+  <div class="book-grid">
+    {sorted.map((b) => (
+      <BookCard {...b} estado={b.estado as any} />
+    ))}
+  </div>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filters button');
+  const books = document.querySelectorAll<HTMLElement>('.book');
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      buttons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      books.forEach((book) => {
+        book.style.display =
+          filter === 'todos' || book.dataset.estado === filter ? '' : 'none';
+      });
+    });
+  });
+</script>

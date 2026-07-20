@@ -1,0 +1,29 @@
+---
+interface Props {
+  isbn: string;
+  titulo: string;
+  autor: string;
+  estado: 'leyendo' | 'leido' | 'quiero-leer';
+  nota?: number | null;
+}
+
+const { isbn, titulo, autor, estado, nota } = Astro.props;
+const coverUrl = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg?default=false`;
+const estadoLabel: Record<string, string> = {
+  leyendo: 'Leyendo',
+  leido: 'Leído',
+  'quiero-leer': 'Quiero leer',
+};
+---
+
+<div class="book" data-estado={estado}>
+  <div class="cover">
+    <img src={coverUrl} alt={`Portada de ${titulo}`} loading="lazy" onerror="this.outerHTML='<div class=fallback>' + this.alt.replace('Portada de ','') + '</div>'" />
+  </div>
+  <div class="info">
+    <div class="title">{titulo}</div>
+    <div class="author">{autor}</div>
+    {nota && <div class="stars">{'★'.repeat(nota)}{'☆'.repeat(5 - nota)}</div>}
+    <span class={`badge ${estado}`}>{estadoLabel[estado]}</span>
+  </div>
+</div>

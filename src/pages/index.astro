@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BookCard from '../components/BookCard.astro';
+import { getCollection } from 'astro:content';
+import books from '../data/books.json';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const leyendo = books.filter((b) => b.estado === 'leyendo');
+
+const fmt = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
+---
+
+<BaseLayout title="Santiago — Web personal">
+  <section class="hero">
+    <h1>Hola, soy Santiago 👋</h1>
+    <p>
+      Bienvenido a mi rincón en internet. Aquí escribo sobre lo que aprendo,
+      llevo el registro de mis lecturas y comparto mis proyectos.
+    </p>
+  </section>
+
+  <section>
+    <h2>Últimos posts</h2>
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li>
+          <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+          <time datetime={post.data.date.toISOString()}>{fmt.format(post.data.date)}</time>
+        </li>
+      ))}
+    </ul>
+    <p style="margin-top: 0.75rem;"><a class="section-link" href="/blog/">Ver todos →</a></p>
+  </section>
+
+  {leyendo.length > 0 && (
+    <section>
+      <h2>Leyendo ahora</h2>
+      <div class="book-grid" style="grid-template-columns: repeat(auto-fill, minmax(110px, 130px));">
+        {leyendo.map((b) => (
+          <BookCard {...b} estado={b.estado as any} />
+        ))}
+      </div>
+      <p style="margin-top: 1rem;"><a class="section-link" href="/lecturas/">Ver todas mis lecturas →</a></p>
+    </section>
+  )}
+</BaseLayout>
