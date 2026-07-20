@@ -4,11 +4,5 @@
     "descripcion": "Esta misma web: blog, seguimiento de lecturas y proyectos. Construida con Astro.",
     "url": "https://github.com/tuusuario/web-personal",
     "tags": ["Astro", "CSS"]
-  },
-  {
-    "nombre": "Proyecto de ejemplo",
-    "descripcion": "Descripción breve del proyecto. Edita src/data/projects.json para añadir los tuyos.",
-    "url": "",
-    "tags": ["Ejemplo"]
   }
 ]
