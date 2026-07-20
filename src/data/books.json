@@ -1,34 +1,27 @@
 [
-  {
-    "isbn": "9788439732471",
-    "titulo": "Cien años de soledad",
-    "autor": "Gabriel García Márquez",
-    "estado": "leyendo",
-    "nota": null,
-    "comentario": ""
-  },
-  {
-    "isbn": "9780441172719",
-    "titulo": "Dune",
-    "autor": "Frank Herbert",
-    "estado": "leido",
-    "nota": 5,
-    "comentario": "Una obra maestra de la ciencia ficción."
-  },
-  {
-    "isbn": "9788490626945",
-    "titulo": "El nombre del viento",
-    "autor": "Patrick Rothfuss",
-    "estado": "leido",
-    "nota": 4,
-    "comentario": ""
-  },
-  {
-    "isbn": "9780062316097",
-    "titulo": "Sapiens",
-    "autor": "Yuval Noah Harari",
-    "estado": "quiero-leer",
-    "nota": null,
-    "comentario": ""
-  }
+  { "titulo": "El último lobo", "autor": "László Krasznahorkai", "anio": 2026, "origen": "propio", "estado": "leido" },
+  { "titulo": "Crac", "autor": "Josefina Licitra", "anio": 2026, "origen": "propio", "estado": "leido" },
+  { "titulo": "Las perfecciones", "autor": "Vincenzo Latronico", "anio": 2026, "origen": "propio", "estado": "leido" },
+  { "titulo": "Los kodokusha", "autor": "Milena Michiko Flašar", "anio": 2026, "origen": "propio", "estado": "leido" },
+  { "titulo": "Hasta aquí todo va bien", "autor": "Estela Sanchís", "anio": 2026, "origen": "propio", "estado": "leido" },
+  { "titulo": "La otra hija", "autor": "Santiago La Rosa", "anio": 2026, "origen": "propio", "estado": "leido" },
+  { "titulo": "The Husbands", "autor": "Holly Gramazio", "anio": 2026, "origen": "propio", "estado": "leido" },
+  { "titulo": "La separación", "autor": "Martín Kohan", "anio": 2026, "origen": "propio", "estado": "leido" },
+  { "titulo": "Mindfulness para asesinos", "autor": "Karsten Dusse", "anio": 2026, "origen": "propio", "estado": "leido" },
+  { "titulo": "Trueque mental", "autor": "Robert Sheckley", "anio": 2026, "origen": "propio", "estado": "leido" },
+  { "titulo": "Reinhardt's Garden", "autor": "Mark Haber", "anio": 2026, "origen": "propio", "estado": "leido" },
+  { "titulo": "La boca llena de trigo", "autor": "Mayte Gómez Molina", "anio": 2026, "origen": "propio", "estado": "leido" },
+  { "titulo": "El síndrome de Ulises", "autor": "Santiago Gamboa", "anio": 2026, "origen": "propio", "estado": "leido" },
+  { "titulo": "Fontanero solitario", "autor": "Niall Breen", "anio": 2026, "origen": "propio", "estado": "leido" },
+  { "titulo": "El mundo a tus pies", "autor": "Nadar", "anio": 2026, "origen": "biblioteca", "estado": "leido" },
+  { "titulo": "La gente honrada", "autor": "Durieux / Gibrat", "anio": 2026, "origen": "biblioteca", "estado": "leido" },
+  { "titulo": "Todas las familias felices", "autor": "Hervé Le Tellier", "anio": 2026, "origen": "biblioteca", "estado": "leido" },
+  { "titulo": "Hay un mundo en otra parte", "autor": "Gonzalo Maier", "anio": 2026, "origen": "biblioteca", "estado": "leido" },
+  { "titulo": "Pelusa baby", "autor": "Constanza Gutiérrez", "anio": 2026, "origen": "biblioteca", "estado": "leido" },
+  { "titulo": "Un futuro anterior", "autor": "Mauro Libertella", "anio": 2026, "origen": "biblioteca", "estado": "leido" },
+  { "titulo": "Borges por Piglia", "autor": "Ricardo Piglia", "anio": 2026, "origen": "biblioteca", "estado": "leido" },
+  { "titulo": "El baile", "autor": "Irène Némirovsky", "anio": 2026, "origen": "biblioteca", "estado": "leido" },
+  { "titulo": "Una mano invisible", "autor": "Gonzalo Maier", "anio": 2026, "origen": "biblioteca", "estado": "leido" },
+  { "titulo": "Intimidades", "autor": "Katie Kitamura", "anio": 2026, "origen": "biblioteca", "estado": "leido" },
+  { "titulo": "Lectura fácil", "autor": "Cristina Morales", "anio": 2026, "origen": "biblioteca", "estado": "leido" }
 ]

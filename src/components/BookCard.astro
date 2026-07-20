@@ -1,29 +1,63 @@
 ---
 interface Props {
-  isbn: string;
   titulo: string;
   autor: string;
   estado: 'leyendo' | 'leido' | 'quiero-leer';
+  origen?: 'propio' | 'biblioteca';
+  anio?: number;
+  isbn?: string | null;
   nota?: number | null;
 }
 
-const { isbn, titulo, autor, estado, nota } = Astro.props;
-const coverUrl = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg?default=false`;
+const { titulo, autor, estado, origen, isbn = null, nota = null } = Astro.props;
 const estadoLabel: Record<string, string> = {
   leyendo: 'Leyendo',
-  leido: 'Leído',
   'quiero-leer': 'Quiero leer',
 };
 ---
 
-<div class="book" data-estado={estado}>
-  <div class="cover">
-    <img src={coverUrl} alt={`Portada de ${titulo}`} loading="lazy" onerror="this.outerHTML='<div class=fallback>' + this.alt.replace('Portada de ','') + '</div>'" />
+<div class="book" data-estado={estado} data-origen={origen}>
+  <div class="cover" data-resolve data-titulo={titulo} data-autor={autor} data-isbn={isbn}>
+    <div class="fallback">{titulo}</div>
   </div>
   <div class="info">
     <div class="title">{titulo}</div>
     <div class="author">{autor}</div>
     {nota && <div class="stars">{'★'.repeat(nota)}{'☆'.repeat(5 - nota)}</div>}
-    <span class={`badge ${estado}`}>{estadoLabel[estado]}</span>
+    {estadoLabel[estado] && <span class={`badge ${estado}`}>{estadoLabel[estado]}</span>}
+    {origen === 'biblioteca' && <span class="badge biblioteca">Biblioteca</span>}
   </div>
 </div>
+
+<script>
+  // Resuelve portadas desde Open Library: por ISBN si existe,
+  // si no, buscando por título + autor. Cachea en localStorage.
+  async function coverUrlFor(el: HTMLElement): Promise<string | null> {
+    const { titulo = '', autor = '', isbn } = el.dataset;
+    if (isbn) return `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`;
+    const key = `cover:${titulo}|${autor}`;
+    const cached = localStorage.getItem(key);
+    if (cached) return cached === 'none' ? null : cached;
+    try {
+      const params = new URLSearchParams({ title: titulo, author: autor, limit: '1', fields: 'cover_i' });
+      const res = await fetch(`https://openlibrary.org/search.json?${params}`);
+      const data = await res.json();
+      const id = data.docs?.[0]?.cover_i;
+      const url = id ? `https://covers.openlibrary.org/b/id/${id}-M.jpg` : null;
+      localStorage.setItem(key, url ?? 'none');
+      return url;
+    } catch {
+      return null;
+    }
+  }
+
+  document.querySelectorAll<HTMLElement>('.cover[data-resolve]').forEach(async (el) => {
+    const url = await coverUrlFor(el);
+    if (!url) return; // se queda el título como respaldo
+    const img = document.createElement('img');
+    img.alt = `Portada de ${el.dataset.titulo}`;
+    img.loading = 'lazy';
+    img.onload = () => el.replaceChildren(img);
+    img.src = url;
+  });
+</script>

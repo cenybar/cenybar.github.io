@@ -227,6 +227,7 @@ footer {
 .badge.leyendo { background: #dbeafe; color: #1d4ed8; }
 .badge.leido { background: #dcfce7; color: #15803d; }
 .badge.quiero-leer { background: #fef3c7; color: #b45309; }
+.badge.biblioteca { background: #f3e8ff; color: #7e22ce; }
 
 .stars { color: #f59e0b; font-size: 0.8rem; }
 
