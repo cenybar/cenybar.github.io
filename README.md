@@ -1,6 +1,8 @@
 # Web personal
 
-Web personal construida con [Astro](https://astro.build): blog, seguimiento visual de lecturas y proyectos.
+Web personal publicada en https://cenybar.github.io y construida con [Astro](https://astro.build): blog, seguimiento visual de lecturas y proyectos.
+
+Se despliega automáticamente con cada push a main.
 
 ## Comandos
 
